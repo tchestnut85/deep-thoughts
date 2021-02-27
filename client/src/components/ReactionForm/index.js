@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
+
 import { ADD_REACTION } from '../../utils/mutations';
+import { useMutation } from '@apollo/react-hooks';
 
 const ReactionForm = ({ thoughtId }) => {
     const [reactionBody, setBody] = useState('');
@@ -33,15 +34,16 @@ const ReactionForm = ({ thoughtId }) => {
             <p className="m-0">
                 Character Count: {characterCount}/280
             </p>
-            <form onChange={handleFormSubmit} className="flex-row justify-center justify-space-between-md align-stretch">
+            <form onSubmit={handleFormSubmit} className="flex-row justify-center justify-space-between-md align-stretch">
                 <textarea
                     onChange={handleChange}
                     placeholder="Leave a reaction to this thought..."
                     className="form-input col-12 col-md-9"
-                >{reactionBody}</textarea>
+                    value={reactionBody}
+                ></textarea>
 
                 <button className="btn col-12 col-md-3" type="submit">
-                    Submit
+                    React!
                 </button>
             </form>
             {error && <span className="ml-2">Something went wrong...</span>}
